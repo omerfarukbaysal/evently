@@ -7,6 +7,7 @@ require("dotenv").config();
 function getEvents(req, res) {
   var params = {
     TableName: "Events",
+    IndexName: "startDate-index",
   };
   // If there is a 'highlighted' key in query params, we will filter events with start date today
   if (req.query.highlighted) {
@@ -31,7 +32,7 @@ function getEvents(req, res) {
       });
     } else {
       const { Items } = data;
-      res.send(Items);
+      res.send(Items.sort((a, b) => b.startDate.localeCompare(a.startDate)));
     }
   }
 }

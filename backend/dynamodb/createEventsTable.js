@@ -13,11 +13,30 @@ var params = {
   KeySchema: [
     { AttributeName: "id", KeyType: "HASH" }, // Partition key
   ],
-  AttributeDefinitions: [{ AttributeName: "id", AttributeType: "S" }],
+  AttributeDefinitions: [
+    { AttributeName: "id", AttributeType: "S" },
+    { AttributeName: "startDate", AttributeType: "S" },
+  ],
   ProvisionedThroughput: {
     ReadCapacityUnits: 5,
     WriteCapacityUnits: 5,
   },
+  GlobalSecondaryIndexes: [
+    // create a secondary index on startDate attribute
+    {
+      IndexName: "startDate-index",
+      KeySchema: [
+        { AttributeName: "startDate", KeyType: "HASH" }, // secondary index attribute
+      ],
+      Projection: {
+        ProjectionType: "ALL",
+      },
+      ProvisionedThroughput: {
+        ReadCapacityUnits: 5,
+        WriteCapacityUnits: 5,
+      },
+    },
+  ],
 };
 dynamodb.createTable(params, function (err, data) {
   if (err) {
