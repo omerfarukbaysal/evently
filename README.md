@@ -8,9 +8,9 @@ Evently is an application where you can create and view events.
   - [Backend](#1-backend)
     - [Requirements](#requirements)
     - [API endpoints](#api-endpoints)
-    - [Get list of events](#get-list-of-events)
-    - [Create a new event](#create-a-new-event)
-    - [Get a specific event](#get-a-specific-event)
+      - [Get list of events](#get-list-of-events)
+      - [Create a new event](#create-a-new-event)
+      - [Get a specific event](#get-a-specific-event)
   - [Frontend](#2-frontend)
     - [Requirements](#frontend-requirements)
 
