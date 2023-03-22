@@ -1,4 +1,5 @@
-require("dotenv").config();
+const path = require("path");
+require("dotenv").config({ path: path.resolve(__dirname, "../.env") });
 var AWS = require("aws-sdk");
 AWS.config.update({
   region: process.env.REGION,
@@ -19,7 +20,6 @@ var params = {
   },
 };
 dynamodb.createTable(params, function (err, data) {
-  console.log(process.env.REGION);
   if (err) {
     console.error(
       "Unable to create table. Error JSON:",
